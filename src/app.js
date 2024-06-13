@@ -1,8 +1,9 @@
 import express from "express";
-import { SERVER_PORT } from "./constants/env.constant.js";
-import { errorHandler } from "./middlewares/error-handler.middleware.js";
-import { HTTP_STATUS } from "./constants/http-status.constant.js";
 import "./utils/prisma.util.js";
+import { HTTP_STATUS } from "./constants/http-status.constant.js";
+import { SERVER_PORT } from "./constants/env.constant.js";
+import { apiRouter } from "./routers/index.js";
+import { errorHandler } from "./middlewares/error-handler.middleware.js";
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/server-check", (req, res, next) => {
   return res.status(HTTP_STATUS.OK).send("server works!!");
 });
+
+app.use("/api", apiRouter);
 
 app.use(errorHandler);
 
