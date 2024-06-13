@@ -1,4 +1,6 @@
 import { ResumesRepository } from "../repositories/resumes.repository.js";
+import { HttpError } from "../errors/http.error.js";
+import { MESSAGES } from "../constants/message.constant.js";
 
 export class ResumesService {
   resumesRepository = new ResumesRepository();
@@ -61,10 +63,7 @@ export class ResumesService {
 
     // 2. 해당 이력서가 존재하지 않으면?
     if (!data) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({
-        status: HTTP_STATUS.NOT_FOUND,
-        message: MESSAGES.RESUMES.COMMON.NOT_FOUND,
-      });
+      throw new HttpError.NotFound(MESSAGES.RESUMES.COMMON.NOT_FOUND);
     }
 
     // 3. resumesRepository로부터 전달된 resume 정보가
@@ -93,10 +92,7 @@ export class ResumesService {
     );
     // 1-2. 이력서가 존재하지 않으면?
     if (!isExistingResume) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({
-        status: HTTP_STATUS.NOT_FOUND,
-        message: MESSAGES.RESUMES.COMMON.NOT_FOUND,
-      });
+      throw new HttpError.NotFound(MESSAGES.RESUMES.COMMON.NOT_FOUND);
     }
 
     // 2-INPUT: resumesRepository.updateResumes()에 전달받은 매개변수 투입
@@ -122,10 +118,7 @@ export class ResumesService {
     );
     // 1-2. 이력서가 존재하지 않으면?
     if (!isExistingResume) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({
-        status: HTTP_STATUS.NOT_FOUND,
-        message: MESSAGES.RESUMES.COMMON.NOT_FOUND,
-      });
+      throw new HttpError.NotFound(MESSAGES.RESUMES.COMMON.NOT_FOUND);
     }
 
     // 2-INPUT: resumesRepository.deletedResume()에 전달받은 매개변수 투입

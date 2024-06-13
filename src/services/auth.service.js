@@ -7,8 +7,8 @@ import {
   HASH_SALT_ROUNDS,
   ACCESS_TOKEN_EXPIRES_IN,
 } from "../constants/auth.constant.js";
-import { HTTP_STATUS } from "../constants/http-status.constant.js";
 import { MESSAGES } from "../constants/message.constant.js";
+import { HttpError } from "../errors/http.error.js";
 
 export class AuthService {
   authRepository = new AuthRepository();
@@ -20,10 +20,7 @@ export class AuthService {
     const isExistingEmail = await this.authRepository.findByEmail(email);
     // 1-2. 이미 가입된 이메일이라면 에러
     if (isExistingEmail) {
-      return res.status(HTTP_STATUS.CONFLICT).json({
-        status: HTTP_STATUS.CONFLICT,
-        message: MESSAGES.AUTH.COMMON.EMAIL.DUPLICATED,
-      });
+      throw new HttpError.Conflict(MESSAGES.AUTH.COMMON.EMAIL.DUPLICATED);
     }
     // 2. 비밀번호 hash하기
     const hashedPassword = bcrypt.hashSync(password, HASH_SALT_ROUNDS);
@@ -47,20 +44,14 @@ export class AuthService {
     const user = await this.authRepository.findByEmail(email);
     // 1-2. 가입된 게 아니라면 에러
     if (!user) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({
-        status: HTTP_STATUS.NOT_FOUND,
-        message: MESSAGES.AUTH.COMMON.EMAIL.NOT_FOUND,
-      });
+      throw new HttpError.NotFound(MESSAGES.AUTH.COMMON.EMAIL.NOT_FOUND);
     }
 
     // 2. 만약 해당 user가 존재한다면 비밀번호가 일치하는지 검사
     const isPasswordMatched = bcrypt.compareSync(password, user.password);
     // 2-1. 비밀번호가 일치하지 않는다면 에러
     if (!isPasswordMatched) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({
-        status: HTTP_STATUS.UNAUTHORIZED,
-        message: MESSAGES.AUTH.LOG_IN.UNAUTHORIZED,
-      });
+      throw new HttpError.Unauthorized(MESSAGES.AUTH.LOG_IN.UNAUTHORIZED);
     }
 
     // 3. AccessToken 발행
