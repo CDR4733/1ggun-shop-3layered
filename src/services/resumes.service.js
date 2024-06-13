@@ -106,7 +106,7 @@ export class ResumesService {
       resumeTitle,
       resumeContent,
     );
-    // 2-OUTPUT: data에 resumesRepository로부터 수정된 updatedResume 정보 받음
+    // 2-OUTPUT: resumesRepository로부터 수정된 updatedResume 정보 받음
 
     // 3. 수정된 updatedResume 정보를 Controller에게 전달
     return updatedResume;
@@ -133,7 +133,7 @@ export class ResumesService {
       userId,
       resumeId,
     );
-    // 2-OUTPUT: data에 resumesRepository로부터 수정된 deletedResume 정보 받음
+    // 2-OUTPUT: resumesRepository로부터 삭제된 deletedResume 정보 받음
 
     // 3. 삭제된 deletedResume 정보를 Controller에게 전달
     return deletedResume;
