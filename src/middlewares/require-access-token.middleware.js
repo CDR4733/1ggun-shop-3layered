@@ -3,6 +3,7 @@ import { prisma } from "../utils/prisma.util.js";
 import { HTTP_STATUS } from "../constants/http-status.constant.js";
 import { MESSAGES } from "../constants/message.constant.js";
 import { ACCESS_TOKEN_SECRET_KEY } from "../constants/env.constant.js";
+import { UsersRepository } from "../repositories/users.repository.js";
 
 export const requireAccessToken = async (req, res, next) => {
   try {
@@ -62,12 +63,8 @@ export const requireAccessToken = async (req, res, next) => {
 
     // 4. AccessToken 자체는 유효하지만 사용자는?
     // 4-1. Payload에 담긴 사용자 ID와 일치하는 user 조회
-    const user = await prisma.users.findUnique({
-      where: {
-        userId: +userId,
-      },
-      //   omit: { 제외하고싶은컬럼: true }, // 예시: omit: { password: true },
-    });
+    const usersRepository = new UsersRepository();
+    const user = await usersRepository.findUserById(userId);
     // 4-2. 일치하는 user가 없는 경우 에러!
     if (!user) {
       return res.status(HTTP_STATUS.NOT_FOUND).json({
