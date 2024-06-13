@@ -1,0 +1,31 @@
+{
+  "name": "1ggun-shop-3layered",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/CDR4733/1ggun-shop-3layered.git",
+  "author": "CDR4733 <shsing2@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "format": "prettier --write *.js **/*.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^5.15.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joi": "^17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.3",
+    "prisma": "^5.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "eslint": "9.x",
+    "globals": "^15.4.0",
+    "prettier": "^3.3.2",
+    "typescript-eslint": "^7.13.0"
+  }
+}
