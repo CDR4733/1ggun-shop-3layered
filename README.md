@@ -109,7 +109,7 @@ yarn dev
 
 ## 🍌 배포
 - AWS EC2 & RDS
-- ⛱️ 배포링크 : http://cdr4733.shop:3018/
+- ⛱️ 배포링크 : http://cdr4733.shop:3000/
 
 🍊🍋🍎🥭🍍🍑🍏🍒🍌
 
