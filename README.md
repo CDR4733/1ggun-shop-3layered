@@ -32,6 +32,15 @@ yarn start
 yarn dev
 ```
 
+- 서버 체크
+
+```sh
+http://cdr4733.shop:3000/server-check
+```
+![image](https://github.com/CDR4733/1ggun-shop-3layered/assets/166963977/e5ce9fe5-2fc1-454a-98b6-0ed97b7be5de)
+
+
+
 ## 🍓 API Specification
 
 ![00-API명세](https://github.com/CDR4733/1ggun-shop/assets/166963977/4246cff9-4288-4f93-b7b1-e0689349ba58)
