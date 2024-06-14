@@ -1,8 +1,9 @@
 # 1ggun-shop 일꾼샵-3layered
 
-## 🍑 1ggun-shop 일꾼샵
+## 🍑 1ggun-shop 일꾼샵-3layered
 - 간단 구인구직 리크루팅 플랫폼 입니다.
 - 이력서 CRUD와 채용 관련 의사결정 표시를 지원합니다.
+- 기존 1ggun-shop에서 3layered 리팩토링을 했습니다.
 
 ## 🍒 간단 기능 소개
 - 취업을 준비하는 회원들이 여러 이력서를 자유롭게 제출할 수 있습니다.
@@ -54,7 +55,57 @@ yarn dev
 
 ⛱️ API테스트결과 Link: https://shocking-flavor-85b.notion.site/API-b13028621ca94525bb1e79e1b5730335?pvs=4
 
- 
+## 🍒 Folder Structures
+
+```sh
+📦1ggun-shop-3layered    
+ ┣ 📂prisma   
+ ┃ ┗ 📜schema.prisma   
+ ┣ 📂src   
+ ┃ ┣ 📂constants   
+ ┃ ┃ ┣ 📜auth.constant.js   
+ ┃ ┃ ┣ 📜env.constant.js   
+ ┃ ┃ ┣ 📜http-status.constant.js   
+ ┃ ┃ ┣ 📜message.constant.js   
+ ┃ ┃ ┗ 📜resume.constant.js   
+ ┃ ┣ 📂controllers   
+ ┃ ┃ ┣ 📜auth.controller.js   
+ ┃ ┃ ┣ 📜resumes.controller.js   
+ ┃ ┃ ┗ 📜users.controller.js   
+ ┃ ┣ 📂errors   
+ ┃ ┃ ┗ 📜http.error.js   
+ ┃ ┣ 📂middlewares   
+ ┃ ┃ ┣ 📂validators   
+ ┃ ┃ ┃ ┣ 📜create-resume-validator.middleware.js   
+ ┃ ┃ ┃ ┣ 📜log-in-validator.middleware.js   
+ ┃ ┃ ┃ ┣ 📜sign-up-validator.middleware.js   
+ ┃ ┃ ┃ ┗ 📜update-resume-validator.middleware.js   
+ ┃ ┃ ┣ 📜error-handler.middleware.js   
+ ┃ ┃ ┗ 📜require-access-token.middleware.js   
+ ┃ ┣ 📂repositories   
+ ┃ ┃ ┣ 📜auth.repository.js   
+ ┃ ┃ ┣ 📜resumes.repository.js   
+ ┃ ┃ ┗ 📜users.repository.js   
+ ┃ ┣ 📂routers   
+ ┃ ┃ ┣ 📜auth.router.js   
+ ┃ ┃ ┣ 📜index.js   
+ ┃ ┃ ┣ 📜resumes.router.js   
+ ┃ ┃ ┗ 📜users.router.js   
+ ┃ ┣ 📂services   
+ ┃ ┃ ┣ 📜auth.service.js   
+ ┃ ┃ ┣ 📜resumes.service.js   
+ ┃ ┃ ┗ 📜users.service.js   
+ ┃ ┣ 📂utils   
+ ┃ ┃ ┗ 📜prisma.util.js   
+ ┃ ┗ 📜app.js   
+ ┣ 📜.env   
+ ┣ 📜.gitignore   
+ ┣ 📜.prettierrc.json   
+ ┣ 📜eslint.config.js   
+ ┣ 📜package.json   
+ ┣ 📜README.md   
+ ┗ 📜yarn.lock   
+```
 
 ## 🍌 배포
 - AWS EC2 & RDS
